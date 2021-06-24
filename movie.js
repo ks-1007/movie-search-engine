@@ -31,9 +31,16 @@ function showMovieData(d) {
     rating.innerHTML = `Imdb Rating: ${d.imdbRating}`
     
     let runtime=document.createElement("p")
-    runtime.innerHTML = `Run time: ${d.Runtime}`
+        runtime.innerHTML = `Run time: ${d.Runtime}`
+        
+        let recommend = document.createElement("h3");
+        if (d.imdbRating > 8.5) {
+            recommend.innerText="*Recommended*"
+        } else {
+            recommend.innerText = "";
+        }
     
-    cont.append(title, year, rating, runtime)
+    cont.append(recommend,title, year, rating, runtime)
     } else {
         let h3 = document.createElement("h3");
         h3.innerHTML = "Warning! Movie name not found"
