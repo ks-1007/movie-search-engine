@@ -4,7 +4,6 @@ async function searchMovie() {
     let movie = document.getElementById("movie").value
     
     try {
-        cont.innerHTML = null;
         let res=await fetch(`http://www.omdbapi.com/?apikey=3133029&t=${movie}`)
         let data = await res.json()
         console.log('data:', data)
@@ -20,7 +19,9 @@ async function searchMovie() {
 
 
 function showMovieData(d) {
-    let title=document.createElement("p")
+        cont.innerHTML = null;
+    if (d.Response == 'True') {
+        let title=document.createElement("p")
     title.innerHTML = `Name: ${d.Title}`
 
     let year=document.createElement("p")
@@ -33,4 +34,10 @@ function showMovieData(d) {
     runtime.innerHTML = `Run time: ${d.Runtime}`
     
     cont.append(title, year, rating, runtime)
+    } else {
+        let h3 = document.createElement("h3");
+        h3.innerHTML = "Warning! Movie name not found"
+        cont.append(h3)
+    }
+    
 }
