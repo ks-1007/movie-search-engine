@@ -22,16 +22,16 @@ function showMovieData(d) {
         cont.innerHTML = null;
     if (d.Response == 'True') {
         let title=document.createElement("p")
-    title.innerHTML = `Name: ${d.Title}`
+    title.innerHTML = `Name:  ${d.Title}`
 
     let year=document.createElement("p")
-    year.innerHTML = `Year of Release: ${d.Year}`
+    year.innerHTML = `Year of Release:  ${d.Year}`
 
     let rating=document.createElement("p")
-    rating.innerHTML = `Imdb Rating: ${d.imdbRating}`
+    rating.innerHTML = `Imdb Rating:  ${d.imdbRating}`
     
     let runtime=document.createElement("p")
-        runtime.innerHTML = `Run time: ${d.Runtime}`
+        runtime.innerHTML = `Run time:  ${d.Runtime}`
         
         let recommend = document.createElement("h3");
         if (d.imdbRating > 8.5) {
@@ -39,8 +39,11 @@ function showMovieData(d) {
         } else {
             recommend.innerText = "";
         }
-    
-    cont.append(recommend,title, year, rating, runtime)
+        let actors=document.createElement("p")
+        actors.innerHTML=`Actors:  ${d.Actors}`
+        let img = document.createElement("img");
+        img.src=d.Poster
+    cont.append(recommend,img,title, year, rating, runtime, actors)
     } else {
         let h3 = document.createElement("h3");
         h3.innerHTML = "Warning! Movie name not found"
